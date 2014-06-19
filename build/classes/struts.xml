@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="struts2" extends="struts-default">
+		<action name="login" class="LoginAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="common_user">/views/index.jsp</result>
+			<result name="financialStaff">/views/financialStaffIndex.jsp</result>
+			<result name="financialManager">/views/financialManagerIndex.jsp</result>
+			<result name="admin">/views/adminIndex.jsp</result>
+		</action>
+
+		<action name="logout" class="LogoutAction">
+			<result name="success">/views/login.jsp</result>
+		</action>
+
+		<action name="register" class="RegisterAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="registeredSuccess">/views/success.jsp</result>
+		</action>
+
+		<action name="displayHostProjectList" class="DisplayHostProjectListAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/hostProjectList.jsp</result>
+		</action>
+
+		<action name="displayInvolvedProjectList" class="DisplayInvolvedProjectListAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/involvedProjectList.jsp</result>
+		</action>
+
+		<action name="addHostUsersAction" class="AddHostUsersAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">displayHostProjectAction</param>
+				<param name="p_id">${p_id}</param>
+			</result>
+		</action>
+
+		<action name="displayHostProjectAction" class="DisplayHostProjectAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/hostProject.jsp</result>
+		</action>
+
+		<action name="displayInvolvedProjectAction" class="DisplayInvolvedProjectAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/involvedProject.jsp</result>
+		</action>
+
+		<action name="updateInvolvedProjectAction" class="UpdateInvolvedProjectAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/involvedProject.jsp</result>
+		</action>
+
+		<action name="getPersonalInfoAction" class="GetPersonalInfoAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/personalInfo.jsp</result>
+		</action>
+
+		<action name="updatePersonalInfo" class="UpdatePersonalInfo">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/updatePersonalInfo.jsp</result>
+		</action>
+
+		<action name="submitPersonalInfoAction" class="SubmitPersonalInfoAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/personalInfo.jsp</result>
+		</action>
+
+		<action name="verifyExpenseAction" class="VerifyExpenseAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/verifyExpense.jsp</result>
+		</action>
+
+		<action name="allowExpenseAction" class="AllowExpenseAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">displayHostProjectAction</param>
+				<param name="p_id">${p_id}</param>
+			</result>
+		</action>
+
+		<action name="adminDisplayProjectsAction" class="AdminDisplayProjectsAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminDisplayProjects.jsp</result>
+		</action>
+
+		<action name="adminGetProjectInfoAction" class="AdminGetProjectInfoAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminDisplaySingleProject.jsp</result>
+		</action>
+
+		<action name="adminUpdateProjectAction" class="AdminUpdateProjectAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminIndex.jsp</result>
+		</action>
+
+		<action name="adminAddProjectAction" class="AdminAddProjectAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminDisplayProjects.jsp</result>
+		</action>
+
+		<action name="adminAddCommonUser" class="AdminAddCommonUser">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminDisplayProjects.jsp</result>
+		</action>
+
+		<action name="adminAddFinancialStaff" class="AdminAddFinancialStaff">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminDisplayProjects.jsp</result>
+		</action>
+
+		<action name="adminAddFinancialManager" class="AdminAddFinancialManager">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminDisplayProjects.jsp</result>
+		</action>
+
+		<action name="adminGetAllCommonUserAction" class="AdminGetAllCommonUserAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminGetAllCommonUsers.jsp</result>
+		</action>
+
+		<action name="adminGetAllFinancialStaffAction" class="AdminGetAllFinancialStaffAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminGetAllFinancialStaff.jsp</result>
+		</action>
+
+		<action name="adminGetAllFinancialManagerAction" class="AdminGetAllFinancialManagerAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminGetAllFinancialManager.jsp</result>
+		</action>
+
+		<action name="adminGetSingleCommonUserAction" class="AdminGetSingleCommonUserAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminDisplayCommonUser.jsp</result>
+		</action>
+
+		<action name="adminGetSingleFinancialStaffAction" class="AdminGetSingleFinancialStaffAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminDisplayFinancialStaff.jsp</result>
+		</action>
+
+		<action name="adminGetSingleFinancialManagerAction" class="AdminGetSingleFinancialManagerAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminDisplayFinancialManager.jsp</result>
+		</action>
+
+		<action name="adminUpdateCommonUserAction" class="AdminUpdateCommonUserAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminGetAllCommonUsers.jsp</result>
+		</action>
+
+		<action name="adminUpdateFinancialStaffAction" class="AdminUpdateFinancialStaffAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminGetAllFinancialStaff.jsp</result>
+		</action>
+
+		<action name="adminUpdateFinancialManagerAction" class="AdminUpdateFinancialManagerAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/adminGetAllFinancialManager.jsp</result>
+		</action>
+
+		<action name="financialStaffGetProjectAction" class="FinancialStaffGetProjectAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/financialStaffGetProject.jsp</result>
+		</action>
+
+		<action name="financialStaffUpdateStateAction" class="FinancialStaffUpdateStateAction">
+			<result name="error">/views/error.jsp</result>
+			<result name="success">/views/financialStaffIndex.jsp</result>
+		</action>
+
+	</package>
+</struts>
+

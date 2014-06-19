@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<bean id="DaoHelper" class="financialSystem.dao.impl.DaoHelperImpl">
+	</bean>
+
+	<bean id="ProjectDao" class="financialSystem.dao.impl.ProjectDaoImpl">
+		<property name="DaoHelper">
+			<ref bean="DaoHelper" />
+		</property>
+		<property name="CommonUserDao">
+			<ref bean="CommonUserDao" />
+		</property>
+	</bean>
+
+	<bean id="CommonUserDao" class="financialSystem.dao.impl.CommonUserDaoImpl">
+		<property name="DaoHelper">
+			<ref bean="DaoHelper" />
+		</property>
+		<property name="ProjectDao">
+			<ref bean="ProjectDao" />
+		</property>
+	</bean>
+
+	<bean id="AdminDao" class="financialSystem.dao.impl.AdminDaoImpl">
+		<property name="DaoHelper">
+			<ref bean="DaoHelper" />
+		</property>
+		<property name="CommonUserDao">
+			<ref bean="CommonUserDao" />
+		</property>
+		<property name="ProjectDao">
+			<ref bean="ProjectDao" />
+		</property>
+	</bean>
+
+	<bean id="FinancialStaffDao" class="financialSystem.dao.impl.FinancialStaffDaoImpl">
+		<property name="DaoHelper">
+			<ref bean="DaoHelper" />
+		</property>
+	</bean>
+
+	<bean id="CommonUserService" class="financialSystem.service.impl.CommonUserServiceImpl">
+		<property name="CommonUserDao">
+			<ref bean="CommonUserDao" />
+		</property>
+	</bean>
+
+	<bean id="ProjectService" class="financialSystem.service.impl.ProjectServiceImpl">
+		<property name="CommonUserDao">
+			<ref bean="CommonUserDao" />
+		</property>
+		<property name="ProjectDao">
+			<ref bean="ProjectDao" />
+		</property>
+	</bean>
+
+	<bean id="AdminService" class="financialSystem.service.impl.AdminServiceImpl">
+		<property name="AdminDao">
+			<ref bean="AdminDao" />
+		</property>
+	</bean>
+
+	<bean id="FinancialStaffService" class="financialSystem.service.impl.FinancialStaffServiceImpl">
+		<property name="FinancialStaffDao">
+			<ref bean="FinancialStaffDao" />
+		</property>
+	</bean>
+
+	<bean id="LoginAction" class="financialSystem.action.LoginAction">
+		<property name="CommonUserService">
+			<ref bean="CommonUserService" />
+		</property>
+	</bean>
+
+	<bean id="RegisterAction" class="financialSystem.action.RegisterAction">
+		<property name="CommonUserService">
+			<ref bean="CommonUserService" />
+		</property>
+	</bean>
+
+	<bean id="DisplayHostProjectListAction" class="financialSystem.action.DisplayHostProjectListAction">
+		<property name="CommonUserService">
+			<ref bean="CommonUserService" />
+		</property>
+		<property name="ProjectService">
+			<ref bean="ProjectService" />
+		</property>
+	</bean>
+
+	<bean id="DisplayInvolvedProjectListAction" class="financialSystem.action.DisplayInvolvedProjectListAction">
+		<property name="CommonUserService">
+			<ref bean="CommonUserService" />
+		</property>
+		<property name="ProjectService">
+			<ref bean="ProjectService" />
+		</property>
+	</bean>
+
+	<bean id="DisplayHostProjectAction" class="financialSystem.action.DisplayHostProjectAction">
+		<property name="ProjectService">
+			<ref bean="ProjectService" />
+		</property>
+		<property name="CommonUserService">
+			<ref bean="CommonUserService" />
+		</property>
+	</bean>
+
+	<bean id="AddHostUsersAction" class="financialSystem.action.AddHostUsersAction">
+		<property name="CommonUserService">
+			<ref bean="CommonUserService" />
+		</property>
+	</bean>
+
+	<bean id="DisplayInvolvedProjectAction" class="financialSystem.action.DisplayInvolvedProjectAction">
+		<property name="ProjectService">
+			<ref bean="ProjectService" />
+		</property>
+		<property name="CommonUserService">
+			<ref bean="CommonUserService" />
+		</property>
+	</bean>
+
+	<bean id="UpdateInvolvedProjectAction" class="financialSystem.action.UpdateInvolvedProjectAction">
+		<property name="ProjectService">
+			<ref bean="ProjectService" />
+		</property>
+		<property name="CommonUserService">
+			<ref bean="CommonUserService" />
+		</property>
+	</bean>
+
+	<bean id="GetPersonalInfoAction" class="financialSystem.action.GetPersonalInfoAction">
+		<property name="CommonUserService">
+			<ref bean="CommonUserService" />
+		</property>
+	</bean>
+
+	<bean id="UpdatePersonalInfo" class="financialSystem.action.UpdatePersonalInfo">
+		<property name="CommonUserService">
+			<ref bean="CommonUserService" />
+		</property>
+	</bean>
+
+	<bean id="SubmitPersonalInfoAction" class="financialSystem.action.SubmitPersonalInfoAction">
+		<property name="CommonUserService">
+			<ref bean="CommonUserService" />
+		</property>
+	</bean>
+
+	<bean id="VerifyExpenseAction" class="financialSystem.action.VerifyExpenseAction">
+		<property name="CommonUserService">
+			<ref bean="CommonUserService" />
+		</property>
+		<property name="ProjectService">
+			<ref bean="ProjectService" />
+		</property>
+	</bean>
+
+	<bean id="AllowExpenseAction" class="financialSystem.action.AllowExpenseAction">
+		<property name="CommonUserService">
+			<ref bean="CommonUserService" />
+		</property>
+		<property name="ProjectService">
+			<ref bean="ProjectService" />
+		</property>
+	</bean>
+
+	<bean id="AdminDisplayProjectsAction" class="financialSystem.action.AdminDisplayProjectsAction">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminGetProjectInfoAction" class="financialSystem.action.AdminGetProjectInfoAction">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminUpdateProjectAction" class="financialSystem.action.AdminUpdateProjectAction">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminAddProjectAction" class="financialSystem.action.AdminAddProjectAction">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminAddCommonUser" class="financialSystem.action.AdminAddCommonUser">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminAddFinancialStaff" class="financialSystem.action.AdminAddFinancialStaff">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminAddFinancialManager" class="financialSystem.action.AdminAddFinancialManager">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminGetAllCommonUserAction" class="financialSystem.action.AdminGetAllCommonUserAction">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminGetAllFinancialStaffAction" class="financialSystem.action.AdminGetAllFinancialStaffAction">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminGetAllFinancialManagerAction"
+		class="financialSystem.action.AdminGetAllFinancialManagerAction">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminGetSingleCommonUserAction" class="financialSystem.action.AdminGetSingleCommonUserAction">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminGetSingleFinancialStaffAction"
+		class="financialSystem.action.AdminGetSingleFinancialStaffAction">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminGetSingleFinancialManagerAction"
+		class="financialSystem.action.AdminGetSingleFinancialManagerAction">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminUpdateCommonUserAction" class="financialSystem.action.AdminUpdateCommonUserAction">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminUpdateFinancialStaffAction" class="financialSystem.action.AdminUpdateFinancialStaffAction">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="AdminUpdateFinancialManagerAction"
+		class="financialSystem.action.AdminUpdateFinancialManagerAction">
+		<property name="AdminService">
+			<ref bean="AdminService" />
+		</property>
+	</bean>
+
+	<bean id="FinancialStaffGetProjectAction" class="financialSystem.action.FinancialStaffGetProjectAction">
+		<property name="FinancialStaffService">
+			<ref bean="FinancialStaffService" />
+		</property>
+	</bean>
+
+	<bean id="FinancialStaffUpdateStateAction" class="financialSystem.action.FinancialStaffUpdateStateAction">
+		<property name="FinancialStaffService">
+			<ref bean="FinancialStaffService" />
+		</property>
+	</bean>
+	
+	<bean name="job1" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="financialSystem.timeJob.TimeJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="timeout" value="0" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="job1" />
+		<property name="cronExpression" value="0,10,20,30,40,50 * * * * ?" />
+	</bean>
+	
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean>
+	
+
+	
+	
+</beans>
